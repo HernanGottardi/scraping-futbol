@@ -1,0 +1,30 @@
+on:
+  schedule:
+    - cron: '0 * * * *' # Esto significa "cada hora".
+
+# Define el trabajo a realizar.
+jobs:
+  run-bot:
+    runs-on: windows-latest # Elige un ambiente de ejecución, como Ubuntu.
+
+    steps:
+      # 1. Clona el repositorio en el runner
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Instala Python en el runner
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x' # Reemplaza con la versión de Python que uses.
+
+      # 3. Instala las dependencias de Python
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 5. Ejecuta el bot de scraping
+      - name: Run the scraping bot
+        run: |
+          python index.py  # Reemplaza con el nombre de tu script.
