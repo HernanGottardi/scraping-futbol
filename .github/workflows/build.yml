@@ -3,11 +3,12 @@ name: Scraping Bot # Nombre del flujo de trabajo
 on:
   schedule:
     - cron: '0 * * * *' # Esto significa "cada hora".
+  workflow_dispatch: # Permite ejecutar el flujo de trabajo manualmente
 
 # Define el trabajo a realizar.
 jobs:
   run-bot:
-    runs-on: windows-latest # Elige un ambiente de ejecución, como Ubuntu.
+    runs-on: ubuntu-latest # Elige un ambiente de ejecución, Ubuntu es más común y estable.
 
     steps:
       # 1. Clona el repositorio en el runner
@@ -25,6 +26,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      # 4. Configura las credenciales de Firebase
+      # - name: Set up Firebase credentials
+      #   run: |
+      #     echo "${{ secrets.FIREBASE_CREDENTIALS }}" > firebase_credentials.json
+      #   env:
+      #     FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
 
       # 5. Ejecuta el bot de scraping
       - name: Run the scraping bot
