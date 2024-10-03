@@ -39,3 +39,8 @@ jobs:
       - name: Run the scraping bot
         run: |
           python index.py
+        env:
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
+          FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_CLIENT_ID }}
+          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_PRIVATE_KEY_ID }}
+          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_AUTH_PROVIDER_X509_CERT_URL }}
