@@ -27,20 +27,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # 4. Configura las credenciales de Firebase
-      - name: Set up Firebase credentials
-        run: |
-          echo "FIREBASE_CLIENT_EMAIL=${{ secrets.FIREBASE_CLIENT_EMAIL }}" >> $GITHUB_ENV
-          echo "FIREBASE_CLIENT_ID=${{ secrets.FIREBASE_CLIENT_ID }}" >> $GITHUB_ENV
-          echo "FIREBASE_PRIVATE_KEY_ID=${{ secrets.FIREBASE_PRIVATE_KEY_ID }}" >> $GITHUB_ENV
-          echo "FIREBASE_AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}" >> $GITHUB_ENV
-
       # 5. Ejecuta el bot de scraping
       - name: Run the scraping bot
         run: |
           python index.py
-        env:
-          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
-          FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_CLIENT_ID }}
-          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_PRIVATE_KEY_ID }}
-          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_AUTH_PROVIDER_X509_CERT_URL }}
