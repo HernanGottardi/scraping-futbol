@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from DBConnection import getAllDocuments, addDocument, deleteAllDocuments
+from DBConnection import addDocument, deleteAllDocuments
 
 def paisValido(pais):
     if (pais == "SUD" or pais == "ECUA" or pais == "COL" or pais == "PE" or pais == "AR" or pais == "CH" or pais == "BRA" or pais == "URU" or pais == "AFCCHA" or pais =="IT" or pais == "ENG"):
@@ -17,13 +17,15 @@ chrome_options.add_argument("--disable-dev-shm-usage")  # Evitar problemas de me
 chrome_options.add_argument("--disable-gpu")  # Desactivar GPU para evitar problemas
 chrome_options.add_argument("--window-size=1920x1080")  # Establecer un tamaño de ventana
 
-
 # Inicializar el navegador
 driver = webdriver.Chrome(options=chrome_options)
 
 try:
 
-    deleteAllDocuments()
+    try:
+        deleteAllDocuments()
+    except Exception as e:
+        print(f"Error al obtener documentos: {e}")
 
     # Navegar a la página
     driver.get("https://pelotalibre.org/")
