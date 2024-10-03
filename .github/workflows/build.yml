@@ -1,3 +1,5 @@
+name: Scraping Bot # Nombre del flujo de trabajo
+
 on:
   schedule:
     - cron: '0 * * * *' # Esto significa "cada hora".
