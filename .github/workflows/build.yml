@@ -2,7 +2,7 @@ name: Scraping Bot # Nombre del flujo de trabajo
 
 on:
   schedule:
-    - cron: '0 * * * *' # Esto significa "cada hora".
+    - cron: '*/10 * * * *' # Esto significa "cada hora".
   workflow_dispatch: # Permite ejecutar el flujo de trabajo manualmente
 
 # Define el trabajo a realizar.
