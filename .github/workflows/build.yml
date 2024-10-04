@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest # Elige un ambiente de ejecución, Ubuntu es más común y estable.
 
     steps:
+      - name: instalar shedule
+        uses: austenstone/schedule@v1.3
       # 1. Clona el repositorio en el runner
       - name: Checkout code
         uses: actions/checkout@v3
