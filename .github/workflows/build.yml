@@ -8,23 +8,23 @@ on:
 # Define el trabajo a realizar.
 jobs:
   run-bot:
-    runs-on: ubuntu-latest # Elige un ambiente de ejecución, Ubuntu es más común y estable.
+    runs-on: ubuntu-latest
 
     steps:
       - name: Set up repository access
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }} # Cambia esto por tu personal access token
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: echo "Using personal access token"
 
-      # 1. Clona el repositorio en el runner
+      # 1. Clona el repositorio en el runner con Node.js 20
       - name: Checkout code
-        uses: actions/checkout@v3 # No necesitas cambiar la versión, GitHub ya usará Node.js 20
+        uses: actions/checkout@v3.1.0 # Versión compatible con Node.js 20
 
-      # 2. Instala Python en el runner
+      # 2. Instala Python en el runner con Node.js 20
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v4.7.0 # Versión compatible con Node.js 20
         with:
-          python-version: '3.12.1' # Asegúrate de que esta sea la versión de Python que usas.
+          python-version: '3.12.1'
 
       # 3. Instala las dependencias de Python
       - name: Install dependencies
