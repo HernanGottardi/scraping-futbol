@@ -11,8 +11,16 @@ jobs:
     runs-on: ubuntu-latest # Elige un ambiente de ejecución, Ubuntu es más común y estable.
 
     steps:
-      - name: instalar shedule
+      - name: Set up repository access
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }} # Cambia esto por tu personal access token
+        run: echo "Using personal access token"
+
+      - name: instalar schedule
         uses: austenstone/schedule@v1.3
+        with:
+          github-token: ${{ secrets.PAT }}
+
       # 1. Clona el repositorio en el runner
       - name: Checkout code
         uses: actions/checkout@v3
